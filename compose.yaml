@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: api
+    hostname: api
+    build:
+        context: ./back/
+        dockerfile: Dockerfile
+    restart: always
+
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+
+  postgres:
+    image: postgres:latest
+    container_name: gestaodb
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    environment:
+      POSTGRES_DB: gestao
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123
+
+
+  adminer: # interface para o banco de dados
+     image: adminer
+     restart: always
+     ports:
+       - "8000:8080"
+     links:
+       - postgres
+
+volumes: # volume para persistir os dados do banco de dados
+  postgres-db:
