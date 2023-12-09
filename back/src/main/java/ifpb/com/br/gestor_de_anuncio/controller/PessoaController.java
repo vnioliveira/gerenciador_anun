@@ -1,0 +1,47 @@
+package ifpb.com.br.gestor_de_anuncio.controller;
+
+
+import ifpb.com.br.gestor_de_anuncio.domain.Pessoa;
+import ifpb.com.br.gestor_de_anuncio.service.PessoaService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+public class PessoaController {
+
+    private final PessoaService pessoaService;
+
+    @GetMapping("/pessoas")
+    public ResponseEntity<List<Pessoa>> listar() {
+        return ResponseEntity.status(200).body(pessoaService.listar());
+    }
+
+    @GetMapping("/pessoas/{id}")
+    public ResponseEntity<Pessoa> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.status(200).body(pessoaService.buscarPorId(id));
+    }
+
+    @PostMapping("/pessoas")
+    public ResponseEntity<Void> salvar(Pessoa pessoa) {
+        pessoaService.salvar(pessoa);
+        return ResponseEntity.status(201).build();
+    }
+
+    @DeleteMapping("/pessoas/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        pessoaService.remover(id);
+        return ResponseEntity.status(200).build();
+    }
+
+    @PutMapping("/pessoas")
+    public ResponseEntity<Void> atualizar(@RequestBody Pessoa pessoa) {
+        pessoaService.atualizar(pessoa);
+        return ResponseEntity.status(200).build();
+    }
+
+    
+}

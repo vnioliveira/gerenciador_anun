@@ -1,8 +1,6 @@
 package ifpb.com.br.gestor_de_anuncio.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,15 +14,24 @@ import java.io.Serializable;
 @Entity
 public class Pessoa implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
+    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pessoa_id_seq")
+    @SequenceGenerator(name="pessoa_id_seq", sequenceName="pessoa_id_seq", allocationSize=1)
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "email")
     private String email;
 
+    @Column (name = "senha")
     private String senha;
 
+    @Column(name = "admin")
     private Boolean admin;
 
     public Pessoa() {
