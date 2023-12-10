@@ -1,0 +1,6 @@
+<div *ngIf="user !== null">
+    <app-home></app-home>   
+</div>
+<div *ngIf="user === null">
+    <login (userEvent)="login($event)"></login>
+</div>
