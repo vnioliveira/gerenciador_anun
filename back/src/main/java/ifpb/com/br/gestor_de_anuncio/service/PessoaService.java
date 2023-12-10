@@ -38,16 +38,6 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
-    public List<Pessoa> listarPorNome(String nome) {
-        List<Pessoa> pessoas = new ArrayList<>();
-        for (Pessoa pessoa : pessoaRepository.findAll()) {
-            if (pessoa.getNome().contains(nome)) {
-                pessoas.add(pessoa);
-            }
-        }
-        return pessoas;
-    }
-
     public Pessoa buscarPorEmail(String email) {
 
         Optional<Pessoa> pessoa = pessoaRepository.findByEmail(email);

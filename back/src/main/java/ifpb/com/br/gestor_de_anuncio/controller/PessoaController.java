@@ -43,5 +43,25 @@ public class PessoaController {
         return ResponseEntity.status(200).build();
     }
 
-    
+    @PostMapping("/pessoas/login")
+    public ResponseEntity<Pessoa> login(@RequestBody Pessoa pessoa) {
+        Pessoa pessoaLogada = pessoaService.buscarPorEmail(pessoa.getEmail());
+        if (pessoaLogada != null) {
+            if (pessoaLogada.getSenha().equals(pessoa.getSenha())) {
+                return ResponseEntity.status(200).body(pessoaLogada);
+            }
+        }
+        return ResponseEntity.status(404).build();
+    }
+
+    @PostMapping("/pessoas/cadastro")
+    public ResponseEntity<Pessoa> cadastro(@RequestBody Pessoa pessoa) {
+        Pessoa pessoaLogada = pessoaService.buscarPorEmail(pessoa.getEmail());
+        if (pessoaLogada == null) {
+            pessoa.setAdmin(false);
+            pessoaService.salvar(pessoa);
+            return ResponseEntity.status(200).body(pessoa);
+        }
+        return ResponseEntity.status(404).build();
+    }
 }

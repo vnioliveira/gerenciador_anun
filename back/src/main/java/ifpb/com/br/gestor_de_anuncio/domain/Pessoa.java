@@ -21,10 +21,6 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pessoa_id_seq")
     @SequenceGenerator(name="pessoa_id_seq", sequenceName="pessoa_id_seq", allocationSize=1)
     private Long id;
-
-    @Column(name = "nome")
-    private String nome;
-
     @Column(name = "email")
     private String email;
 
