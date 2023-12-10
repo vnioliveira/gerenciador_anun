@@ -1,0 +1,57 @@
+/* contato-form.component.css */
+
+.contato-form {
+    max-width: 400px;
+    margin: 20px auto;
+
+  }
+  
+  mat-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(170, 125, 125, 0.1);
+    background-color: #fff;
+    
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #311010;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  input, textarea {
+    font-size: 16px;
+  }
+  
+  button {
+    width: 100%;
+    background-color: #ff0062;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e74b87;
+  }
+  
