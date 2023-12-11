@@ -1,6 +1,5 @@
 package ifpb.com.br.gestor_de_anuncio.services;
 
-
 import ifpb.com.br.gestor_de_anuncio.domain.EmailModel;
 import ifpb.com.br.gestor_de_anuncio.enums.StatusEmail;
 import ifpb.com.br.gestor_de_anuncio.repository.EmailRepository;
@@ -11,11 +10,8 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class EmailService {
@@ -26,7 +22,6 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    @Transactional
     public EmailModel sendEmail(EmailModel emailModel) {
         emailModel.setSendDateEmail(LocalDateTime.now());
         try{
@@ -47,9 +42,5 @@ public class EmailService {
 
     public Page<EmailModel> findAll(Pageable pageable) {
         return  emailRepository.findAll(pageable);
-    }
-
-    public Optional<EmailModel> findById(UUID emailId) {
-        return emailRepository.findById(emailId);
     }
 }
