@@ -4,12 +4,21 @@
     align-items: center;
 }
 
+.button-holders{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 90%;
+}
 
 .cards{
-    margin: 30px;
     width: 90%;
 }
 
 .header{
     align-items: center;
+}
+
+.buttons{
+    margin-right: 4px;
 }

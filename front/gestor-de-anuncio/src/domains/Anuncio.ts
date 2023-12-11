@@ -10,6 +10,7 @@ export interface Anuncio {
     ano : string | undefined;
     cor : string | undefined;
     preco : string | undefined;
+    pessoaId : string | undefined;
     pessoaEmail : string | undefined;
 
 }

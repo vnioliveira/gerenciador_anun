@@ -8,9 +8,10 @@ import {PrimengModule} from './shared/primeng.module';
 import {ChartModule} from "primeng/chart";
 import { HomeComponent } from './pages/home/home.component';
 import { TableServices } from 'src/services/tables.services';
+import { AnuncioComponent } from './pages/home/anuncio/anuncio.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent],
+    declarations: [AppComponent, HomeComponent, AnuncioComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

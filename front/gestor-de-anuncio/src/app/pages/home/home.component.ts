@@ -15,6 +15,13 @@ export class HomeComponent implements OnInit{
   anuncios: Anuncio[] = [];
   pessoas: any[] = [];
 
+
+  //bools
+  displayAnuncio: boolean = false;
+  displayPessoa: boolean = false;
+  displayUser: boolean = false;
+  displayProfile: boolean = false;
+
   items: MenuItem[] | undefined;
 
   activeItem: MenuItem | undefined;
@@ -25,9 +32,10 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
 
     this.items = [
-      { label: 'About Us', icon: 'pi pi-fw pi-calendar' },
-      { label: 'profile', icon: 'pi pi-fw pi-user' },
-      { label: 'Logout', icon: 'pi pi-fw pi-exit' }
+      { label: 'Novo Anúncio', icon: 'pi pi-fw pi-calendar' },
+      { label: 'Sobre nós', icon: 'pi pi-fw pi-info' },
+      { label: 'Conta', icon: 'pi pi-fw pi-user' },
+      { label: 'Sair', icon: 'pi pi-fw pi-exit' }
   ];
 
   this.activeItem = this.items[0];
@@ -36,6 +44,10 @@ export class HomeComponent implements OnInit{
 
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     
+    this.anunciosUpdate();
+  }
+
+  anunciosUpdate() {
     this.tableService.getAnuncios().subscribe((data: any[]) => {
       this.anuncios = data;
       console.log(this.anuncios);
@@ -44,9 +56,40 @@ export class HomeComponent implements OnInit{
   }
 
   menuClick(event: any) {
-    if (event === 'Logout') {
+    if (event === 'Sair') {
       localStorage.removeItem('user');
       window.location.reload();
     }
+    else if (event === 'Conta') {
+      this.displayUser = true;
+    }
+    else if (event === 'Sobre nós') {
+      this.displayProfile = true;
+    }
+    else if (event === 'Novo Anúncio') {
+      this.displayAnuncio = true;
+    }
   }
+
+  AnuncioClose(event: any) {
+    this.displayAnuncio = false;
+    this.anunciosUpdate();
+  }
+
+  deleteAnuncio(id: string) {
+    console.log(id);
+    
+    this.tableService.deleteAnuncio(id).subscribe({
+      next: (data) => {
+        console.log(data);
+        alert('Anúncio deletado com sucesso!');
+        this.anunciosUpdate();
+      },
+      error: (error) => {
+        console.log(error);
+        alert('Erro ao deletar anúncio!');
+      }
+    })
+  }
+
 }
