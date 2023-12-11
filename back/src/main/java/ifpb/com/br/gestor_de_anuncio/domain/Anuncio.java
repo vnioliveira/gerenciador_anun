@@ -44,6 +44,9 @@ public class Anuncio implements Serializable {
     @Column(name = "pessoa_id")
     private long pessoaId;
 
+    @Column(name = "pessoa_email")
+    private String pessoaEmail;
+
     public Anuncio() {
 
     }

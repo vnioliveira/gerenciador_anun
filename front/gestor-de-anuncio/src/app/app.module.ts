@@ -7,6 +7,7 @@ import {LoginModule} from './pages/login/login.module';
 import {PrimengModule} from './shared/primeng.module';
 import {ChartModule} from "primeng/chart";
 import { HomeComponent } from './pages/home/home.component';
+import { TableServices } from 'src/services/tables.services';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent],
@@ -18,7 +19,9 @@ import { HomeComponent } from './pages/home/home.component';
         LoginModule,
         PrimengModule,
     ],
-    providers: [],
+    providers: [
+        TableServices
+    ],
     bootstrap: [AppComponent],
 
 })

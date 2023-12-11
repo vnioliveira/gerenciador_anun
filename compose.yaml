@@ -29,8 +29,10 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 123
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "root"]
-
+      test: ["CMD", "pg_isready", "-U", "root", "-d", "gestao"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   adminer: # interface para o banco de dados
      image: adminer
