@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 		if(localStorage.getItem('user') != null){
       this.user = JSON.parse(localStorage.getItem('user') || '{}');
     }
-		this.user? this.router.navigate(['/dashboard']) : this.router.navigate(['/']);
+		this.user? this.router.navigate(['/home']) : this.router.navigate(['/']);
 	}
 
 	title = 'contabil-web-app';

@@ -36,6 +36,7 @@ export class LoginFormComponent {
         localStorage.setItem('user', JSON.stringify(user));
         this.userEvent.emit(user);
         this.router.navigate(['/home']);
+        window.location.reload();
       },
       error: () => {
         this.invalidUser = true;

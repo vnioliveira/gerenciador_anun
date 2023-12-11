@@ -26,7 +26,7 @@ public class PessoaController {
     }
 
     @PostMapping("/pessoas")
-    public ResponseEntity<Void> salvar(Pessoa pessoa) {
+    public ResponseEntity<Void> salvar(@RequestBody Pessoa pessoa) {
         pessoaService.salvar(pessoa);
         return ResponseEntity.status(201).build();
     }

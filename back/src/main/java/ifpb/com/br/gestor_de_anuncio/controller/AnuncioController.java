@@ -3,7 +3,6 @@ package ifpb.com.br.gestor_de_anuncio.controller;
 
 import ifpb.com.br.gestor_de_anuncio.domain.Anuncio;
 import ifpb.com.br.gestor_de_anuncio.service.AnuncioService;
-import jakarta.persistence.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

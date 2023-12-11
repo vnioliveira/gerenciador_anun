@@ -33,6 +33,7 @@ export class CadastroFormComponent {
       next: (user: User) => {
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/home']);
+        window.location.reload();
       },
       error: () => {
         this.invalidUser = true;
