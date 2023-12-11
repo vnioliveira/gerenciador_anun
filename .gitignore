@@ -1,0 +1,39 @@
+# Arquivos específicos do Angular
+/dist
+/node_modules
+/e2e
+/.angular-cli.json
+/.stylelintcache
+/angular.json
+/karma.conf.js
+/tsconfig.json
+/tsconfig.app.json
+/tsconfig.spec.json
+
+# Arquivos específicos do Spring
+/target/
+/.mvn/
+/mvnw
+/mvnw.cmd
+/.springBeans
+/.idea
+/*.iml
+/.vscode
+/.project
+/.classpath
+/.settings/
+
+# Arquivos específicos do Docker
+
+
+# Arquivos temporários
+*.log
+*.tmp
+*.swp
+
+# Arquivos de configuração locais
+*.iml
+*.ipr
+*.iws
+/.idea/
+
