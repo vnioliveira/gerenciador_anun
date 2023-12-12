@@ -1,0 +1,34 @@
+<div class="anuncio-body">
+    <div class="flex-row anuncio-slices">
+        <span class="p-float-label pad10">
+            <input pInputText id="username" [(ngModel)]="modelo" />
+            <label for="username">Modelo</label>
+        </span>
+        <span class="p-float-label pad10">
+            <input pInputText id="username" [(ngModel)]="marca" />
+            <label for="username">Marca</label>
+        </span>                
+    </div>
+    <div class="flex-row anuncio-slices">
+        <span class="p-float-label pad10">
+            <p-inputNumber [(ngModel)]="ano" mode="decimal" inputId="withoutgrouping" [useGrouping]="false" [maxlength]="4"> </p-inputNumber>
+            <label for="username">Ano</label>
+        </span>
+        <span class="p-float-label pad10">
+            <input pInputText id="username" [(ngModel)]="estado" />
+            <label for="username">Estado</label>
+        </span>
+    </div>
+    <div class="flex-row anuncio-slices">
+        <span class="p-float-label pad10">
+            <input pInputText id="username" [(ngModel)]="cor" />
+            <label for="username">Cor</label>
+        </span>
+        <span class="p-float-label pad10">
+            <p-inputNumber [(ngModel)]="preco" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"> </p-inputNumber>
+            <label for="username">Preço</label>
+        </span>
+    </div>
+
+    <p-button label="Salvar" class="pad10" (click)="salvar()"></p-button>
+</div>

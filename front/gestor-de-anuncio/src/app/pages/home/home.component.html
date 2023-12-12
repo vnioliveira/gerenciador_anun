@@ -3,58 +3,67 @@
         <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="menuClick($event.label)"></p-tabMenu>
     </div>
     <p-card header="Anúncios" class="cards">
-        <p-table [value]="anuncios" [tableStyle]="{ 'min-width': '50rem' }">
+        <p-table [value]="anuncios">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Id</th>
-                    <th>Estado</th>
-                    <th>Modelo</th>
-                    <th>Marca</th>
-                    <th>ano</th>
-                    <th>cor</th>
-                    <th>preco</th>
-                    <th>pessoa</th>
-                    <th>actions</th>
+                    <th pSortableColumn="modelo" style="width:20%">Modelo<p-sortIcon field="modelo"></p-sortIcon></th>
+                    <th pSortableColumn="marca" style="width:20%">Marca<p-sortIcon field="marca"></p-sortIcon></th>
+                    <th pSortableColumn="estado" style="width:20%">Estado<p-sortIcon field="estado"></p-sortIcon></th>
+                    <th pSortableColumn="ano" style="width:20%">Quantity<p-sortIcon field="ano"></p-sortIcon></th>
+                    <th pSortableColumn="cor" style="width:20%">Ano<p-sortIcon field="cor"></p-sortIcon></th>
+                    <th pSortableColumn="preco" style="width:20%">Preco<p-sortIcon field="preco"></p-sortIcon></th>
+                    <th pSortableColumn="wmail" style="width:20%">Email<p-sortIcon field="email"></p-sortIcon></th>
+                    <th pSortableColumn="actions" style="width:20%">Actions<p-sortIcon field="actions"></p-sortIcon></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-product>
                 <tr>
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.estado }}</td>
                     <td>{{ product.modelo }}</td>
                     <td>{{ product.marca }}</td>
+                    <td>{{ product.estado }}</td>
                     <td>{{ product.ano }}</td>
                     <td>{{ product.cor }}</td>
                     <td>{{ product.preco }}</td>
                     <td>{{ product.pessoaEmail }}</td>
+                    <td *ngIf="product.pessoaEmail === user.email || user.admin">
+                        <p-button icon="pi pi-trash" (onClick)="deleteAnuncio(product.id)" [rounded]="true" severity="danger"></p-button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
     </p-card>
     
+    <div *ngIf="user.admin" style="width: 90%;">
+        <p-divider class="pad10 w-100"></p-divider>
 
-    <p-divider class="pad10 w-100"></p-divider>
-
-    <p-card header="Pessoas" class="cards">
-        <p-table [value]="anuncios" [tableStyle]="{ 'min-width': '50rem' }">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Quantity</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr>
-                    <td>{{ product.code }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.category }}</td>
-                    <td>{{ product.quantity }}</td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </p-card>
+        <p-card header="Pessoas" class="cards">
+            <p-table [value]="pessoas" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Admin</th>
+                        <th *ngIf="user.admin">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.email }}</td>
+                        <td *ngIf="product.admin"><i class="pi pi-check"></i></td>
+                        <td *ngIf="!product.admin"><i class="pi pi-times"></i></td>
+                        <td *ngIf="!product.admin && user.admin">
+                            <p-button icon="pi pi-trash" (onClick)="deletePessoa(product.id)" [rounded]="true" severity="danger"></p-button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+    </div>
     
+    
+    <p-dialog header="Novo anúncio" [(visible)]="displayAnuncio" [modal]="true" [style]="{ width: '50%' }" [draggable]="false" [resizable]="false">
+        <app-anuncio (anuncioEvent)="AnuncioClose($event)"></app-anuncio>
+    </p-dialog>
 
 </div>
