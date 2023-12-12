@@ -19,6 +19,9 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
 
     public void salvar(Pessoa pessoa) {
+
+        int tamanho = pessoaRepository.findAll().size();
+        pessoa.setAdmin(tamanho == 0);
         pessoaRepository.save(pessoa);
     }
 
