@@ -21,16 +21,25 @@ public class EmailService {
 
     private final JavaMailSender emailSender;
 
+    private static final String CORPO_PADRAO = "Essa foi a mensagem que você enviou para o AutoAnuncios.com \n";
+
+    private static final String CORPO_PADRAO_SAC = "Nova mensagem de um cliente do AutoAnuncios.com \n";
+    private static final String SAC = "vmarcoslins@gmail.com";
+    private static final String EMAIL_SISTEMA = "vo7775832@gmail.com";
     public EmailModel sendEmail(EmailModel emailModel) {
         emailModel.setSendDateEmail(LocalDateTime.now());
         try{
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(emailModel.getEmailFrom());
-            message.setTo(emailModel.getEmailTo());
-            message.setSubject(emailModel.getSubject());
+
+            message.setFrom(EMAIL_SISTEMA);
+            message.setTo(SAC);
+            message.setSubject(CORPO_PADRAO_SAC+emailModel.getSubject());
             message.setText(emailModel.getText());
             emailSender.send(message);
-
+//            enviando copia
+            message.setTo(emailModel.getEmailTo());
+            message.setText(CORPO_PADRAO +emailModel.getText());
+            emailSender.send(message);
             emailModel.setStatusEmail(StatusEmail.SENT);
         } catch (MailException e){
             emailModel.setStatusEmail(StatusEmail.ERROR);

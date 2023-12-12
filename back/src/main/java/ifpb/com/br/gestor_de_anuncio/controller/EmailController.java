@@ -1,4 +1,4 @@
-package ifpb.com.br.gestor_de_anuncio.controllers;
+package ifpb.com.br.gestor_de_anuncio.controller;
 
 
 import ifpb.com.br.gestor_de_anuncio.domain.EmailModel;

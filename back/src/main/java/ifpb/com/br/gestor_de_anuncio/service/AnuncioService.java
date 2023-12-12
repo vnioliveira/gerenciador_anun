@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -52,5 +51,13 @@ public class AnuncioService {
             }
         }
         return anuncios;
+    }
+
+    public List<Anuncio> buscarPorAno(String ano) {
+        return anuncioRepository.findByAno(ano);
+    }
+
+    public List<Anuncio> buscarPorModelo(String modelo) {
+        return anuncioRepository.findByModelo(modelo);
     }
 }

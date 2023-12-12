@@ -10,9 +10,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { TableServices } from 'src/services/tables.services';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { AnuncioComponent } from './pages/home/anuncio/anuncio.component';
-
+import { EmailComponent } from './pages/email/email.component';
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AnuncioComponent, SobreComponent],
+    declarations: [AppComponent, HomeComponent, AnuncioComponent, SobreComponent, EmailComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

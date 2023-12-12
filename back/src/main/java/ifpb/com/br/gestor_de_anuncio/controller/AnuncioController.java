@@ -49,4 +49,16 @@ public class AnuncioController {
         return ResponseEntity.status(200).body(anuncioService.buscarPorPessoaId(id));
     }
 
+    @GetMapping("/anuncios/ano/{ano}")
+    public ResponseEntity<List<Anuncio>> buscarPorAno(@PathVariable String ano) {
+        List<Anuncio> anuncios = anuncioService.buscarPorAno(ano);
+        return ResponseEntity.ok(anuncios);
+    }
+
+    @GetMapping("/anuncios/modelo/{modelo}")
+    public ResponseEntity<List<Anuncio>> buscarPorModelo(@PathVariable String modelo) {
+        List<Anuncio> anuncios = anuncioService.buscarPorModelo(modelo);
+        return ResponseEntity.ok(anuncios);
+    }
+
 }
