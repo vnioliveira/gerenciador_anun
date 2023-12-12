@@ -1,10 +1,11 @@
 package ifpb.com.br.gestor_de_anuncio.controllers;
 
+
 import ifpb.com.br.gestor_de_anuncio.domain.EmailModel;
 import ifpb.com.br.gestor_de_anuncio.dtos.EmailDto;
 import ifpb.com.br.gestor_de_anuncio.services.EmailService;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,17 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequiredArgsConstructor
 public class EmailController {
 
-
+    @Autowired
     EmailService emailService;
 
-    ModelMapper modelMapper;
-
     @PostMapping("/sending-email")
-    public ResponseEntity<EmailModel> sendingEmail(@RequestBody EmailDto emailDto) {
-        EmailModel emailModel = modelMapper.map(emailDto, EmailModel.class);
+    public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
+        EmailModel emailModel = new EmailModel();
+        BeanUtils.copyProperties(emailDto, emailModel);
         emailService.sendEmail(emailModel);
         return new ResponseEntity<>(emailModel, HttpStatus.CREATED);
     }

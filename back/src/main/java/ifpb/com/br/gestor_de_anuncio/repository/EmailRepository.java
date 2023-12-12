@@ -3,8 +3,8 @@ package ifpb.com.br.gestor_de_anuncio.repository;
 
 import ifpb.com.br.gestor_de_anuncio.domain.EmailModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
-public interface EmailRepository extends JpaRepository<EmailModel, UUID> {
+@Repository
+public interface EmailRepository extends JpaRepository<EmailModel, Long> {
 }

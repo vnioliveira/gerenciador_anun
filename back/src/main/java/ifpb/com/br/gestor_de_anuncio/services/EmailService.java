@@ -3,7 +3,7 @@ package ifpb.com.br.gestor_de_anuncio.services;
 import ifpb.com.br.gestor_de_anuncio.domain.EmailModel;
 import ifpb.com.br.gestor_de_anuncio.enums.StatusEmail;
 import ifpb.com.br.gestor_de_anuncio.repository.EmailRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mail.MailException;
@@ -14,13 +14,12 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class EmailService {
 
-    @Autowired
-    EmailRepository emailRepository;
+    private final EmailRepository emailRepository;
 
-    @Autowired
-    private JavaMailSender emailSender;
+    private final JavaMailSender emailSender;
 
     public EmailModel sendEmail(EmailModel emailModel) {
         emailModel.setSendDateEmail(LocalDateTime.now());
