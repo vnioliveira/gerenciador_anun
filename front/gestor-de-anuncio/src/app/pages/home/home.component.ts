@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit{
       localStorage.removeItem('user');
       window.location.reload();
     }
-    if (event === 'About Us') {
+    if (event === 'Sobre nós') {
       this.router.navigate(['/sobre']);
     }
     else if (event === 'Conta') {
