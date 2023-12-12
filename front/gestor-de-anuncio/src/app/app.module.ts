@@ -8,16 +8,17 @@ import {PrimengModule} from './shared/primeng.module';
 import {ChartModule} from "primeng/chart";
 import { HomeComponent } from './pages/home/home.component';
 import { TableServices } from 'src/services/tables.services';
+import { SobreComponent } from './pages/sobre/sobre.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent],
+    declarations: [AppComponent, HomeComponent, SobreComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         ChartModule,
         LoginModule,
-        PrimengModule,
+        PrimengModule
     ],
     providers: [
         TableServices

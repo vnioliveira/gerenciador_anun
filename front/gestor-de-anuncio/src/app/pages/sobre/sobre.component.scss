@@ -1,0 +1,59 @@
+.quem-somos {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: #333;
+}
+
+p {
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+i.pi {
+    margin-right: 8px;
+    font-size: 24px;
+}
+
+span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Adicionando estilo ao ícone de contato */
+h3:contains('Entre em Contato') i.pi {
+    font-size: 28px;
+}
+
+/* Adicionando estilo ao botão "Contate-nos" */
+.contate-nos-button {
+    background-color: #ff0062; 
+    color: #fff; 
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.contate-nos-button:hover {
+    background-color: #e74b87; 
+}

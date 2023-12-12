@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Anuncio } from 'src/domains/Anuncio';
 import { User } from 'src/domains/User';
@@ -20,7 +21,10 @@ export class HomeComponent implements OnInit{
   activeItem: MenuItem | undefined;
 
 
-  constructor(private tableService: TableServices) { }
+  constructor(
+    private tableService: TableServices,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
 
@@ -47,6 +51,9 @@ export class HomeComponent implements OnInit{
     if (event === 'Logout') {
       localStorage.removeItem('user');
       window.location.reload();
+    }
+    if (event === 'About Us') {
+      this.router.navigate(['/sobre']);
     }
   }
 }
