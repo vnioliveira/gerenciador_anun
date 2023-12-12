@@ -11,8 +11,9 @@ import { TableServices } from 'src/services/tables.services';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { AnuncioComponent } from './pages/home/anuncio/anuncio.component';
 import { EmailComponent } from './pages/email/email.component';
+import { ContaComponent } from './pages/home/conta/conta.component';
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AnuncioComponent, SobreComponent, EmailComponent],
+    declarations: [AppComponent, HomeComponent, AnuncioComponent, SobreComponent, EmailComponent, ContaComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

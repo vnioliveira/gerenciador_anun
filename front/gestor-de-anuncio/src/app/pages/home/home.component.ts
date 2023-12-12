@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { Table } from 'primeng/table';
 import { Anuncio } from 'src/domains/Anuncio';
-import { User } from 'src/domains/User';
 import { UserServices } from 'src/services/User.services';
 import { TableServices } from 'src/services/tables.services';
 
@@ -16,16 +14,14 @@ export class HomeComponent implements OnInit {
     user: any;
     anuncios: Anuncio[] = [];
     pessoas: any[] = [];
-    ano: Date = new Date();
+    ano!: Date| undefined;
     filtroAno: string = '';
     filtroModelo: string = '';
 
     //bools
     displayAnuncio: boolean = false;
     displayAnuncioEdit: boolean = false;
-    displayPessoa: boolean = false;
-    displayUser: boolean = false;
-    displayProfile: boolean = false;
+    displayConta: boolean = false;
 
     selectedAnuncio: Anuncio | undefined;
 
@@ -59,14 +55,12 @@ export class HomeComponent implements OnInit {
     anunciosUpdate() {
         this.tableService.getAnuncios().subscribe((data: any[]) => {
             this.anuncios = data;
-            console.log(this.anuncios);
         });
     }
 
     pessoasUpdate() {
         this.userService.getUsers().subscribe((data: any[]) => {
             this.pessoas = data;
-            console.log(this.pessoas);
         });
     }
 
@@ -79,7 +73,7 @@ export class HomeComponent implements OnInit {
         } else if (event === 'Sobre nós') {
             this.router.navigate(['/sobre']);
         } else if (event === 'Conta') {
-            this.router.navigate(['/conta']);
+            this.displayConta = true;
         } else if (event === 'Novo Anúncio') {
             this.displayAnuncio = true;
         }
@@ -90,25 +84,26 @@ export class HomeComponent implements OnInit {
         this.anunciosUpdate();
     }
 
+    ContaClose(event: any) {
+        this.displayConta = false;
+        this.pessoasUpdate();
+        this.anunciosUpdate();
+    }
+
     deleteAnuncio(id: string) {
-        console.log(id);
 
         this.tableService.deleteAnuncio(id).subscribe({
             next: (data) => {
-                console.log(data);
                 alert('Anúncio deletado com sucesso!');
                 this.anunciosUpdate();
             },
             error: (error) => {
-                console.log(error);
                 alert('Erro ao deletar anúncio!');
             },
         });
     }
 
     deletePessoa(id: number) {
-        console.log(id);
-
         this.userService.deleteUser(id).subscribe({
             next: (data) => {
                 console.log(data);
@@ -123,9 +118,12 @@ export class HomeComponent implements OnInit {
     }
 
     buscarPorAno() {
+        if(!this.ano){
+            this.anunciosUpdate();
+            return;
+        }
+        
         this.filtroAno = this.ano.getFullYear().toString();
-        console.log(this.filtroAno);
-
         this.tableService.buscarPorAno(this.filtroAno).subscribe(
             (anuncios) => {
                 this.anuncios = anuncios;
@@ -137,6 +135,10 @@ export class HomeComponent implements OnInit {
     }
 
     buscarPorModelo() {
+        if(this.filtroModelo === ''){
+            this.anunciosUpdate();
+            return;
+        }
         this.tableService.buscarPorModelo(this.filtroModelo).subscribe(
             (anuncios) => {
                 this.anuncios = anuncios;
@@ -148,9 +150,10 @@ export class HomeComponent implements OnInit {
     }
 
     clear() {
-        this.ano = new Date();
+        this.ano = undefined;
         this.filtroAno = '';
         this.filtroModelo = '';
+        this.anunciosUpdate();
     }
 
     navigateContate() {

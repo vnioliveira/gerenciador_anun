@@ -38,9 +38,14 @@ public class PessoaController {
     }
 
     @PutMapping("/pessoas")
-    public ResponseEntity<Void> atualizar(@RequestBody Pessoa pessoa) {
-        pessoaService.atualizar(pessoa);
-        return ResponseEntity.status(200).build();
+    public ResponseEntity<Pessoa> atualizar(@RequestBody Pessoa pessoa) {
+        Pessoa pessoa1 = pessoaService.atualizar(pessoa);
+        if(pessoa1 != null) {
+            return ResponseEntity.status(200).body(pessoa1);
+        }
+        else {
+            return ResponseEntity.status(404).build();
+        }
     }
 
     @PostMapping("/pessoas/login")

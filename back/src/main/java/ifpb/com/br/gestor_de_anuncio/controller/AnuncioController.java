@@ -61,4 +61,10 @@ public class AnuncioController {
         return ResponseEntity.ok(anuncios);
     }
 
+    @PostMapping("/anuncios/email")
+    public ResponseEntity<List<Anuncio>> atualizarEmails(@RequestBody Anuncio anuncio) {
+        List<Anuncio> anuncios = anuncioService.atualizarEmails(anuncio.getPessoaId(), anuncio.getPessoaEmail());
+        return ResponseEntity.ok(anuncios);
+    }
+
 }

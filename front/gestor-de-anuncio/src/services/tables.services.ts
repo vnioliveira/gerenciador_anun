@@ -30,4 +30,9 @@ export class TableServices {
         const url = `${this.url}/modelo/${modelo}`;
         return this.http.get<Anuncio[]>(url);
     }
+
+    atualizarPessoa(pessoaId: number,pessoaEmail: string) {
+        const url = `${this.url}/email`;
+        return this.http.post(url, {pessoaId, pessoaEmail});
+    }
 }

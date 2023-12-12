@@ -3,6 +3,7 @@ package ifpb.com.br.gestor_de_anuncio.service;
 
 import ifpb.com.br.gestor_de_anuncio.domain.Pessoa;
 import ifpb.com.br.gestor_de_anuncio.repository.PessoaRepository;
+import jakarta.persistence.Id;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,18 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
-    public void atualizar(Pessoa pessoa) {
-        pessoaRepository.save(pessoa);
+    public Pessoa atualizar(Pessoa pessoa) {
+        Optional<Pessoa> pessoaEncontrada = pessoaRepository.findById(pessoa.getId());
+        if(pessoaEncontrada.isPresent()) {
+            Pessoa pessoa1 = pessoaEncontrada.get();
+            pessoa1.setEmail(pessoa.getEmail());
+            pessoa1.setSenha(pessoa.getSenha());
+            pessoaRepository.save(pessoa1);
+            return pessoa1;
+        }
+        else {
+            return null;
+        }
     }
 
     public List<Pessoa> listar() {

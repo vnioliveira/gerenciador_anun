@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -51,6 +52,19 @@ public class AnuncioService {
             }
         }
         return anuncios;
+    }
+
+    public List<Anuncio> atualizarEmails(Long id, String emailNovo) {
+        Optional<List<Anuncio>> anuncios = anuncioRepository.findAllByPessoaId(id);
+        if (anuncios.isPresent()) {
+            List<Anuncio> anuncios1 = anuncios.get();
+            for (Anuncio anuncio : anuncios1) {
+                anuncio.setPessoaEmail(emailNovo);
+                anuncioRepository.save(anuncio);
+            }
+            return anuncios1;
+        }
+        return null;
     }
 
     public List<Anuncio> buscarPorAno(String ano) {

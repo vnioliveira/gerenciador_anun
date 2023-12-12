@@ -12,6 +12,8 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
 
     Optional<List<Anuncio>> findAllByPessoaId(Long id);
 
+    Optional<List<Anuncio>> findAllByPessoaEmail(String email);
+
     @Query("SELECT a FROM Anuncio a WHERE a.ano LIKE %:ano%")
     List<Anuncio> findByAno(@Param("ano") String ano);
 

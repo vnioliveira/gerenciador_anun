@@ -1,0 +1,14 @@
+<div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="username">Username</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="email" />
+        <small id="username-help">Enter your new email.</small>
+    </div>
+    <div class="flex flex-column gap-2 pt-4">
+        <label htmlFor="username">Password</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="senha" />
+        <small id="username-help">Enter your new password.</small>
+    </div>
+
+    <p-button label="Salvar" class="pad10" (click)="salvar()"></p-button>
+</div>

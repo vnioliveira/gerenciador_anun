@@ -74,4 +74,7 @@
     <p-dialog header="Novo anúncio" [(visible)]="displayAnuncio" [modal]="true" [style]="{ width: '50%' }" [draggable]="false" [resizable]="false">
         <app-anuncio (anuncioEvent)="AnuncioClose($event)"></app-anuncio>
     </p-dialog>
+    <p-dialog header="Editar Conta" [(visible)]="displayConta" [modal]="true" [style]="{ width: '50%' }" [draggable]="false" [resizable]="false">
+        <app-conta (contaEvent)="ContaClose($event)"></app-conta>
+    </p-dialog>
 </div>

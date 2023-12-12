@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EmailModel } from 'src/domains/EmailModel';
 import { EmailService } from 'src/services/Email.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-email',
@@ -15,9 +16,8 @@ export class EmailComponent {
     subject: '',
     text: ''
   };
-  router: any;
 
-  constructor(private emailService: EmailService) {}
+  constructor(private router: Router, private emailService: EmailService) {}
 
   enviarMensagem() {
     console.log(this.email);
