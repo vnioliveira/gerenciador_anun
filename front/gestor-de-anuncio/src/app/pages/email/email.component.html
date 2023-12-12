@@ -1,0 +1,35 @@
+<div class="container">
+    <p-card class="card">
+      <div class="header">
+        <h2>Entre em Contato</h2>
+      </div>
+  
+      <div class="content">
+        <form class="form" #form="ngForm">
+          <div class="p-field">
+            <label for="nome">Nome</label>
+            <input id="nome" pInputText placeholder="Nome" name="nome" [(ngModel)]="email.ownerRef" required>
+          </div>
+  
+          <div class="p-field">
+            <label for="email">E-mail</label>
+            <input id="email" pInputText placeholder="E-mail" name="email" [(ngModel)]="email.emailTo"  required>
+          </div>
+  
+          <div class="p-field">
+            <label for="assunto">Assunto</label>
+            <input id="assunto" pInputText placeholder="Assunto" name="assunto" [(ngModel)]="email.subject" required>
+          </div>
+  
+          <div class="p-field">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" pInputTextarea placeholder="Mensagem" name="mensagem" [(ngModel)]="email.text" required></textarea>
+          </div>
+  
+          <button pButton type="button" label="Enviar Mensagem" (click)="enviarMensagem()" [disabled]="!form.valid"></button>
+          <button pButton type="button" label="Voltar"  (click)="voltar()" class="contate-nos-button"></button>
+        </form>
+      </div>
+    </p-card>
+  </div>
+  

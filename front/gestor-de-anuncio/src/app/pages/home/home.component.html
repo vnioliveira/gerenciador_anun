@@ -3,14 +3,23 @@
         <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="menuClick($event.label)"></p-tabMenu>
     </div>
     <p-card header="Anúncios" class="cards">
-        <p-table [value]="anuncios">
+        <p-table #dt1 [value]="anuncios">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button pButton label="Clear"  (click)="clear()" class="p-button-outlined" icon="pi pi-filter-slash" ></button>
+                    <span class="p-input-icon-left ml-auto">
+                        <p-calendar [(ngModel)]="ano" view="year" dateFormat="yy" inputId="yearpicker" placeholder="Filtrar por ano" (click)="buscarPorAno()"></p-calendar>
+                        <input pInputText type="text" [(ngModel)]="filtroModelo" (input)="buscarPorModelo()" placeholder="Filtrar por Modelo" />
+                    </span>
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="modelo" style="width:20%">Modelo<p-sortIcon field="modelo"></p-sortIcon></th>
                     <th pSortableColumn="marca" style="width:20%">Marca<p-sortIcon field="marca"></p-sortIcon></th>
                     <th pSortableColumn="estado" style="width:20%">Estado<p-sortIcon field="estado"></p-sortIcon></th>
-                    <th pSortableColumn="ano" style="width:20%">Quantity<p-sortIcon field="ano"></p-sortIcon></th>
-                    <th pSortableColumn="cor" style="width:20%">Ano<p-sortIcon field="cor"></p-sortIcon></th>
+                    <th pSortableColumn="ano" style="width:20%">Ano<p-sortIcon field="ano"></p-sortIcon></th>
+                    <th pSortableColumn="cor" style="width:20%">Cor<p-sortIcon field="cor"></p-sortIcon></th>
                     <th pSortableColumn="preco" style="width:20%">Preco<p-sortIcon field="preco"></p-sortIcon></th>
                     <th pSortableColumn="wmail" style="width:20%">Email<p-sortIcon field="email"></p-sortIcon></th>
                     <th pSortableColumn="actions" style="width:20%">Actions<p-sortIcon field="actions"></p-sortIcon></th>
@@ -65,5 +74,4 @@
     <p-dialog header="Novo anúncio" [(visible)]="displayAnuncio" [modal]="true" [style]="{ width: '50%' }" [draggable]="false" [resizable]="false">
         <app-anuncio (anuncioEvent)="AnuncioClose($event)"></app-anuncio>
     </p-dialog>
-
 </div>

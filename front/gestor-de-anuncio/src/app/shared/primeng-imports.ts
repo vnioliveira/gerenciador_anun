@@ -64,6 +64,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { DividerModule } from 'primeng/divider';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 export const PRIMENG_IMPORTS = [
     AccordionModule,
@@ -132,4 +133,5 @@ export const PRIMENG_IMPORTS = [
     TooltipModule,
     TreeModule,
     TreeTableModule,
+    ScrollTopModule 
 ];
