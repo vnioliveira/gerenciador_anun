@@ -1,5 +1,5 @@
 <div *ngIf="user !== null">
-    <app-home></app-home>   
+    <router-outlet></router-outlet> 
 </div>
 <div *ngIf="user === null">
     <login (userEvent)="login($event)"></login>
