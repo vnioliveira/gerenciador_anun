@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Anuncio } from 'src/domains/Anuncio';
 import { User } from 'src/domains/User';
+import { UserServices } from 'src/services/User.services';
 import { TableServices } from 'src/services/tables.services';
 
 @Component({
@@ -18,16 +20,19 @@ export class HomeComponent implements OnInit{
 
   //bools
   displayAnuncio: boolean = false;
+  displayAnuncioEdit: boolean = false;
   displayPessoa: boolean = false;
   displayUser: boolean = false;
   displayProfile: boolean = false;
+
+  selectedAnuncio: Anuncio | undefined;
 
   items: MenuItem[] | undefined;
 
   activeItem: MenuItem | undefined;
 
 
-  constructor(private tableService: TableServices) { }
+  constructor(private router: Router, private tableService: TableServices, private userService: UserServices) { }
 
   ngOnInit(): void {
 
@@ -39,19 +44,24 @@ export class HomeComponent implements OnInit{
   ];
 
   this.activeItem = this.items[0];
-
-    console.log("oi");
-
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     
     this.anunciosUpdate();
+
+    this.pessoasUpdate();
   }
 
   anunciosUpdate() {
     this.tableService.getAnuncios().subscribe((data: any[]) => {
       this.anuncios = data;
       console.log(this.anuncios);
-      
+    });
+  }
+
+  pessoasUpdate() {
+    this.userService.getUsers().subscribe((data: any[]) => {
+      this.pessoas = data;
+      console.log(this.pessoas);
     });
   }
 
@@ -61,7 +71,7 @@ export class HomeComponent implements OnInit{
       window.location.reload();
     }
     else if (event === 'Conta') {
-      this.displayUser = true;
+      this.router.navigate(['/conta']);
     }
     else if (event === 'Sobre nós') {
       this.displayProfile = true;
@@ -91,5 +101,20 @@ export class HomeComponent implements OnInit{
       }
     })
   }
-
+  
+  deletePessoa(id: number) {
+    console.log(id);
+    
+    this.userService.deleteUser(id).subscribe({
+      next: (data) => {
+        console.log(data);
+        alert('Usuário deletado com sucesso!');
+        this.pessoasUpdate();
+      },
+      error: (error) => {
+        console.log(error);
+        alert('Erro ao deletar usuário!');
+      }
+    })
+  }
 }

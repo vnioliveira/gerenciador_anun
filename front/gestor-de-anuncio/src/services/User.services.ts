@@ -12,7 +12,7 @@ export class UserServices {
     constructor(private http: HttpClient) {}
 
     getUsers(): Observable<User[]> {
-        return this.http.get<User[]>(`${this.url}/all`);
+        return this.http.get<User[]>(`${this.url}`);
     }
 
     login(email: string, senha: string): Observable<User> {
@@ -21,6 +21,10 @@ export class UserServices {
 
     cadastro(email: string, senha: string): Observable<User> {
         return this.http.post<User>(`${this.url}/cadastro`, {email, senha});
+    }
+
+    deleteUser(id: number): Observable<User> {
+        return this.http.delete<User>(`${this.url}/${id}`);
     }
 }
 

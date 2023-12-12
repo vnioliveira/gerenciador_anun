@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Anuncio } from 'src/domains/Anuncio';
 import { TableServices } from 'src/services/tables.services';
 
@@ -7,8 +7,7 @@ import { TableServices } from 'src/services/tables.services';
   templateUrl: './anuncio.component.html',
   styleUrls: ['./anuncio.component.scss']
 })
-export class AnuncioComponent {
-
+export class AnuncioComponent{
 
   @Output() anuncioEvent = new EventEmitter<void>();
 
@@ -22,7 +21,6 @@ export class AnuncioComponent {
 
 
   constructor(private tableServices: TableServices) { }
-
 
 
   salvar() {
