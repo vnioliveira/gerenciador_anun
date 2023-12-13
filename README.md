@@ -1,4 +1,4 @@
-markdown
+
 # Gestor de Anúncio
 
 Este é um projeto de gestão de anúncios desenvolvido em Java no backend usando o framework Spring e em Angular no frontend.
