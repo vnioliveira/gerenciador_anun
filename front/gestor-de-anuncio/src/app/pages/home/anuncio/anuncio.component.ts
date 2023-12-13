@@ -43,6 +43,7 @@ export class AnuncioComponent{
       next: (data) => {
         console.log(data);
         alert('Anúncio cadastrado com sucesso!');
+        this.clear();
         this.anuncioEvent.emit();
       },
       error: (error) => {
@@ -50,6 +51,16 @@ export class AnuncioComponent{
         alert('Erro ao cadastrar anúncio!');
       }
     })
+  }
+
+
+  clear() {
+    this.estado = "";
+    this.modelo = "";
+    this.marca = "";
+    this.ano = "";
+    this.cor = "";
+    this.preco = "";
   }
 
 }

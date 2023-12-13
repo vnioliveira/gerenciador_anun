@@ -21,24 +21,39 @@ export class EmailComponent {
 
   enviarMensagem() {
     console.log(this.email);
-    
-    this.emailService.enviarEmail(this.email).subscribe(
-      response => {
-        this.showSuccess('Email enviado com sucesso!');
+
+    this.emailService.enviarEmail(this.email).subscribe({
+      next: (data) => {
+        alert('Email enviado com sucesso!');
         this.router.navigate(['/home']);
       },
-      error => {
-        this.showError('Ocorreu um erro ao enviar o email.');
+      error: (error) => {
+        console.log(error);
+        alert('Erro ao enviar email!');
       }
-    );
+    });
   }
-  showSuccess(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
-  showError(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
+  
   voltar(){
     this.router.navigate(['/home']);
   }
+    
+  //   this.emailService.enviarEmail(this.email).subscribe(
+  //     response => {
+  //       this.showSuccess('Email enviado com sucesso!');
+  //       this.router.navigate(['/home']);
+  //       window.location.reload();
+  //     },
+  //     error => {
+  //       this.showError('Ocorreu um erro ao enviar o email.');
+  //     }
+  //   );
+  // }
+  // showSuccess(arg0: string) {
+  //   throw new Error('Method not implemented.');
+  // }
+  // showError(arg0: string) {
+  //   throw new Error('Method not implemented.');
+  // }
+  
 }
